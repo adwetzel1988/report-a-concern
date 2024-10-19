@@ -16,14 +16,12 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h5 class="card-title">Report #{{ $complaint->complaint_number }}</h5>
-                            @if($complaint->city)
-                                <p class="card-text">City: {{ $complaint->city->name }}</p>
-                            @endif
-                            <p class="card-text">Concern Type: {{ $complaint->complaint_type }}</p>
-                            <p class="card-text">Description: {{ $complaint->description }}</p>
-                            <p class="card-text">Status: Completed</p>
-                            <p class="card-text">Action Taken: {{ $complaint->action_taken }}</p>
-                            <p class="card-text">Date: {{ $complaint->created_at->format('m/d/Y') }}</p>
+                            <p class="mb-0">Created by: {{ $complaint->user->name }}</p>
+                            <p class="mb-0">Concern Type: {{ $complaint->complaint_type }}</p>
+                            <p class="mb-0">Description: {{ $complaint->description }}</p>
+                            <p class="mb-0">Status: Completed</p>
+                            <p class="mb-0">Action Taken: {{ $complaint->action_taken }}</p>
+                            <p class="mb-0">Date: {{ $complaint->created_at->format('m/d/Y') }}</p>
                             @if(auth()->user() && (auth()->user()->role === 'admin' || auth()->user()->role === 'subadmin'))
                                 <a href="{{ route('admin.complaints.show', $complaint->id) }}" class="btn btn-primary">View Details</a>
                             @endif

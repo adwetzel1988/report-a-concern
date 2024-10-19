@@ -27,6 +27,7 @@ class ComplaintUpdated extends Notification
         $status = $this->complaint->status === 'completed' ? 'closed' : $this->complaint->status;
 
         return (new MailMessage)
+            ->subject('Report Status Updated')
             ->line('The status of your reported concern has been updated to: ' . Str::headline($status) . '.')
             ->line('Please click the button below to view the updated report.')
             ->action('View Report', route('complaints.show', $this->complaint));

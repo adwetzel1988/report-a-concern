@@ -24,8 +24,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Complaint #{{ $complaint->complaint_number }}</h5>
                         <p class="card-text"><strong>Status:</strong> {{ ucfirst($complaint->status) }}</p>
-                        <p class="card-text"><strong>Outcome:</strong> {{ ucfirst($complaint->outcome) }}</p>
-                        <p class="card-text"><strong>Incident Date:</strong> 
+                        <p class="card-text"><strong>Incident Date:</strong>
                             @if($complaint->incident_date instanceof \Carbon\Carbon)
                                 {{ $complaint->incident_date->format('F d, Y') }}
                             @else

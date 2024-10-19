@@ -51,6 +51,7 @@
                 <th>Report Number</th>
                 <th>Created by</th>
                 <th>City</th>
+                <th>Person</th>
                 <th>Status</th>
                 <th>Outcome</th>
                 <th>Created at</th>
@@ -63,7 +64,7 @@
                 <tr>
                     <td>{{ $complaint->complaint_number }}</td>
                     <td>{{ $complaint->user->name ?? 'Anonymous' }}</td>
-                    <td>{{ $complaint->city->name ?? 'Not Provided' }}</td>
+                    <td>{{ $complaint->address }}</td>
                     <td>{{ \Illuminate\Support\Str::headline($complaint->status) }}</td>
                     <td>
                         @if($complaint->status === 'completed')

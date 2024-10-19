@@ -41,8 +41,10 @@ class ComplaintController extends Controller
             'officer_division' => 'nullable|string|max:255',
             'officer_badge_number' => 'nullable|string|max:255',
             'attachments.*' => 'file|mimes:jpg,jpeg,png,gif,mp4,pdf,doc,docx|max:10240',
-            'state' => 'required|exists:states,id',
-            'city' => 'required|exists:cities,id',
+            'city_address' => 'nullable|string|max:255',
+            'person_name' => 'nullable|string|max:255',
+            'person_number' => 'nullable|string|max:15',
+            'person_email' => 'nullable|email',
         ]);
 
         if (Auth::check()) {
@@ -85,7 +87,10 @@ class ComplaintController extends Controller
             'incident_date' => $validatedData['incident_date'],
             'complaint_type' => $validatedData['complaint_type'],
             'status' => 'pending',
-            'city_id' => $validatedData['city'],
+            'address' => $validatedData['city_address'],
+            'person_name' => $validatedData['person_name'],
+            'person_number' => $validatedData['person_number'],
+            'person_email' => $validatedData['person_email'],
         ]);
 
         if ($request->hasFile('attachments')) {
@@ -131,11 +136,11 @@ class ComplaintController extends Controller
 
         $results = Complaint::where(function ($q) use ($query) {
             $q->where('complaint_number', 'LIKE', "%$query%")
-                ->orWhereHas('city', function ($q) use ($query) {
-                    $q->where('name', 'LIKE', "%$query%");
-                });
+                ->orWhere('address', 'LIKE', "%$query%")
+                ->orWhere('person_name', 'LIKE', "%$query%")
+                ->orWhere('person_number', 'LIKE', "%$query%")
+                ->orWhere('person_email', 'LIKE', "%$query%");
         })
-            ->where('status', 'completed')
             ->get();
 
         return view('complaints.results', [

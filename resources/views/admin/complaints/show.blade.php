@@ -38,8 +38,10 @@
                     </div>
                     <div class="col-md-6">
                         <h6 class="">City Information</h6>
-                        <p class="card-text"><strong>State:</strong> {{ $complaint->city->state->name }}</p>
-                        <p class="card-text"><strong>City:</strong> {{ $complaint->city->name }}</p>
+                        <p class="card-text"><strong>Address:</strong> {{ $complaint->address }}</p>
+                        <p class="card-text"><strong>Person Name:</strong> {{ $complaint->person_name }}</p>
+                        <p class="card-text"><strong>Person Phone:</strong> {{ $complaint->person_number }}</p>
+                        <p class="card-text"><strong>Person Email:</strong> {{ $complaint->person_email }}</p>
                     </div>
                 </div>
 
