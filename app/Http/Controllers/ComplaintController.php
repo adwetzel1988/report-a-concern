@@ -58,8 +58,6 @@ class ComplaintController extends Controller
                 'email' => 'required_if:anonymous,1|nullable|email|unique:users,email',
                 'password' => 'required_if:anonymous,1|nullable|string|min:8',
                 'address' => 'required_if:anonymous,1|nullable|string|max:255',
-                'person_city' => 'required_if:anonymous,1|nullable|string|max:255',
-                'person_state' => 'required_if:anonymous,1|nullable|string|max:255',
                 'zip' => 'required_if:anonymous,1|nullable|string|max:10',
             ]));
 
@@ -70,8 +68,6 @@ class ComplaintController extends Controller
                     'password' => Hash::make($validatedData['password']),
                     'phone' => $validatedData['phone'],
                     'address' => $validatedData['address'],
-                    'city' => $validatedData['person_city'],
-                    'state' => $validatedData['person_state'],
                     'zip' => $validatedData['zip'],
                 ]);
 
@@ -85,7 +81,7 @@ class ComplaintController extends Controller
             'complaint_number' => 'C-' . Str::random(8),
             'description' => $validatedData['description'],
             'incident_date' => $validatedData['incident_date'],
-            'complaint_type' => $validatedData['complaint_type'],
+            'complaint_type' => $validatedData['complaint_type'] === 'other' ? $validatedData['custom_type'] : $validatedData['complaint_type'],
             'status' => 'pending',
             'address' => $validatedData['city_address'],
             'person_name' => $validatedData['person_name'],
@@ -127,7 +123,8 @@ class ComplaintController extends Controller
 
     public function searchForm()
     {
-        return view('complaints.search');
+        $complaints = Complaint::all();
+        return view('complaints.search', compact('complaints'));
     }
 
     public function search(Request $request)

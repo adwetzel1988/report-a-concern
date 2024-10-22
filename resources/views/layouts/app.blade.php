@@ -34,7 +34,7 @@
                 <ul class="navbar-nav ml-auto">
                     @if(auth()->check() && auth()->user()->role !== 'admin' && auth()->user()->role !== 'subadmin')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('complaints.create') }}">File a Complaint</a>
+                            <a class="nav-link" href="{{ route('complaints.create') }}">Report a Concern</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('complaints.index') }}">My Complaints</a>

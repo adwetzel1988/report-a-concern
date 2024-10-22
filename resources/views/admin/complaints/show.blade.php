@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <p class="card-text"><strong>Status:</strong> {{ \Illuminate\Support\Str::headline($complaint->status) }}</p>
-                        <p class="card-text"><strong>Type:</strong> {{ \Illuminate\Support\Str::headline($complaint->complaint_type) }}</p>
+                        <p class="card-text"><strong>Type of Concern:</strong> {{ \Illuminate\Support\Str::headline($complaint->complaint_type) }}</p>
                         @if($complaint->status === 'completed')
                             <p class="card-text">
                                 <strong>Outcome:</strong> {{ ucfirst($complaint->outcome ?? 'Not determined') }}</p>

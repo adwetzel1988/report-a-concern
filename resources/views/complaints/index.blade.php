@@ -9,6 +9,7 @@
             <tr>
                 <th>Report Number</th>
                 <th>Status</th>
+                <th>Type of Concern</th>
                 <th>Incident Date</th>
                 <th>Actions</th>
             </tr>
@@ -18,6 +19,7 @@
                 <tr>
                     <td>{{ $complaint->complaint_number }}</td>
                     <td>{{ ucfirst($complaint->status) }}</td>
+                    <td>{{ $complaint->complaint_type }}</td>
                     <td>{{ $complaint->incident_date }}</td>
                     <td>
                         <a href="{{ route('complaints.show', $complaint) }}" class="btn btn-sm btn-primary">View</a>

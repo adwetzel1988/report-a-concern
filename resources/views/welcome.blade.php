@@ -31,7 +31,7 @@
             </div>
 
             <div class="text-center mb-5"> <!-- Added mb-5 for more bottom margin -->
-                <a href="{{ route('complaints.create') }}" class="btn btn-danger btn-lg">File a Report</a>
+                <a href="{{ route('complaints.create') }}" class="btn btn-danger btn-lg">Report a Concern</a>
             </div>
 
         </div>

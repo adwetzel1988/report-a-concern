@@ -46,18 +46,14 @@
                                     <label for="password" class="form-label">Password</label>
                                     <input type="password" class="form-control" id="password" name="password" value="{{ old('password') }}">
                                 </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body">
                                 <h5 class="card-title">Address Information</h5>
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Address</label>
                                     <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="city" class="form-label">City</label>
-                                    <input type="text" class="form-control" id="person_city" name="person_city" value="{{ old('person_city') }}">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="state" class="form-label">State</label>
-                                    <input type="text" class="form-control" id="person_state" name="person_state" value="{{ old('person_state') }}">
                                 </div>
                                 <div class="mb-3">
                                     <label for="zip" class="form-label">Zip Code</label>
@@ -87,6 +83,7 @@
                                 <option value="Transportation" {{ old('complaint_type') == 'Transportation' ? 'selected' : '' }}>Transportation</option>
                                 <option value="Utilities" {{ old('complaint_type') == 'Utilities' ? 'selected' : '' }}>Utilities</option>
                                 <option value="Waste Management" {{ old('complaint_type') == 'Waste Management' ? 'selected' : '' }}>Waste Management</option>
+                                <option value="other" {{ old('complaint_type') == 'other' ? 'selected' : '' }}>Other</option>
                             </select>
                         </div>
                         <div class="mb-3" id="custom_type_div" style="display: none;">
@@ -102,6 +99,14 @@
                             <div style="max-width: 250px; display: inline-block;">
                                 <input type="datetime-local" class="form-control" id="incident_date" name="incident_date" value="{{ old('incident_date') }}" required>
                             </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="street_address" class="form-label">Street Address</label>
+                            <input type="text" class="form-control" id="street_address" name="street_address" value="{{ old('street_address') }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="city" class="form-label">City</label>
+                            <input type="text" class="form-control" id="city" name="city" value="{{ old('city') }}">
                         </div>
                     </div>
                 </div>
@@ -234,6 +239,15 @@
           citySelect.disabled = false;
         }
       });
+    });
+
+    document.getElementById('complaint_type').addEventListener('change', function() {
+      var customTypeDiv = document.getElementById('custom_type_div');
+      if (this.value === 'other') {
+        customTypeDiv.style.display = 'block';
+      } else {
+        customTypeDiv.style.display = 'none';
+      }
     });
 </script>
 @endsection

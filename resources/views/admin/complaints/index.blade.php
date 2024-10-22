@@ -51,9 +51,9 @@
                 <th>Report Number</th>
                 <th>Created by</th>
                 <th>City</th>
-                <th>Person</th>
+                <th>Type of Concern</th>
                 <th>Status</th>
-                <th>Outcome</th>
+                <th>Person</th>
                 <th>Created at</th>
                 <th>Closed Date</th>
                 <th>Actions</th>
@@ -65,14 +65,9 @@
                     <td>{{ $complaint->complaint_number }}</td>
                     <td>{{ $complaint->user->name ?? 'Anonymous' }}</td>
                     <td>{{ $complaint->address }}</td>
+                    <td>{{ $complaint->complaint_type }}</td>
                     <td>{{ \Illuminate\Support\Str::headline($complaint->status) }}</td>
-                    <td>
-                        @if($complaint->status === 'completed')
-                            {{ ucfirst($complaint->outcome) }}
-                        @else
-                            N/A
-                        @endif
-                    </td>
+                    <td>{{ $complaint->person_name }}</td>
                     <td>{{ $complaint->created_at }}</td>
                     <td>
                         @if($complaint->status === 'completed')
