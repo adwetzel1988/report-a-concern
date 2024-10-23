@@ -87,7 +87,7 @@
                             </select>
                         </div>
                         <div class="mb-3" id="custom_type_div" style="display: none;">
-                            <label for="custom_type" class="form-label">Custom Type</label>
+                            <label for="custom_type" class="form-label">Specify</label>
                             <input type="text" class="form-control" id="custom_type" name="custom_type" value="{{ old('custom_type') }}">
                         </div>
                         <div class="mb-3">
